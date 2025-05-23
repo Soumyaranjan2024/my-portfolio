@@ -363,6 +363,8 @@ header {
     transition: var(--transition);
 }
 
+
+
 .project-item:hover {
     transform: translateY(-5px);
 }
