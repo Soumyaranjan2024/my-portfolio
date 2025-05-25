@@ -97,12 +97,13 @@ foreach ($skills as $skill) {
                 <h2>About Me</h2>
                 <div class="underline"></div>
             </div>
-            <div class="hero-image">
-                <div class="profile-img">
-                    <img src="uploads/projects/me.jpg" alt="Profile Image"
-                        style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-                </div>
+            <div class="profile-img">
+                <img src="uploads\project\me.jpg" alt="Profile Image"
+                    style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
             </div>
+            <br>
+            <br>
+
             <div class="about-content">
                 <div class="about-text">
                     <p>Hi, I'm Soumya Ranjan Padhi, a passionate student at GIET University. I'm a code enthusiast who
@@ -179,7 +180,6 @@ foreach ($skills as $skill) {
                 <button class="filter-btn" data-filter="web">Web Design</button>
                 <button class="filter-btn" data-filter="app">App Design</button>
                 <button class="filter-btn" data-filter="ui">UI/UX</button>
-
             </div>
             <div class="projects-grid">
                 <?php foreach ($projects as $project): ?>
@@ -253,7 +253,7 @@ foreach ($skills as $skill) {
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form id="contactForm" method="POST" action="submit_contact.php">
+                    <form id="contactForm" method="POST" action="https://formspree.io/f/xldbvzej">
                         <div class="form-group">
                             <input type="text" id="name" name="name" placeholder="Your Name" required>
                         </div>
@@ -267,6 +267,7 @@ foreach ($skills as $skill) {
                             <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Send Message</button>
+                        <p id="form-status"></p>
                     </form>
                 </div>
             </div>
@@ -329,6 +330,41 @@ foreach ($skills as $skill) {
                     }
                 });
             });
+        });
+        const form = document.getElementById("contactForm");
+        const status = document.getElementById("form-status");
+
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault();
+            const data = new FormData(form);
+            const action = form.getAttribute("action");
+
+            try {
+                const response = await fetch(action, {
+                    method: "POST",
+                    body: data,
+                    headers: {
+                        Accept: "application/json"
+                    }
+                });
+
+                if (response.ok) {
+                    status.textContent = "Thanks for your message!";
+                    status.style.color = "green";
+                    form.reset();
+                } else {
+                    const result = await response.json();
+                    if (result.errors) {
+                        status.textContent = result.errors.map(error => error.message).join(", ");
+                    } else {
+                        status.textContent = "Oops! There was a problem submitting your form.";
+                    }
+                    status.style.color = "red";
+                }
+            } catch (error) {
+                status.textContent = "Oops! Network error.";
+                status.style.color = "red";
+            }
         });
     </script>
 </body>

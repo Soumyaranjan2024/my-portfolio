@@ -7,10 +7,7 @@
                 <option value="development">Development</option>
                 <option value="design">Design</option>
                 <option value="tools">Tools</option>
-
-                <option value="marketing">Marketing</option>
-                <option value="branding">Branding</option>
-
+                <option value="other">Other</option>
             </select>
         </div>
         <div class="form-group">

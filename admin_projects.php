@@ -15,8 +15,6 @@
                 <option value="web">Web Design</option>
                 <option value="app">App Design</option>
                 <option value="ui">UI/UX</option>
-                <option value="marketing">Marketing</option>
-
             </select>
         </div>
         <div class="form-group">
