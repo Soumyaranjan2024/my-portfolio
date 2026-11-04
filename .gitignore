@@ -1,0 +1,17 @@
+# ---- Secrets / credentials ----
+# Contains the real Gmail app password. Keep local only.
+/config/email_config.php
+
+# ---- Dependencies (run `composer install` to restore) ----
+/vendor/
+
+# ---- PHP session files ----
+/sessions/
+
+# ---- Local SQLite fallback database ----
+/portfolio.sqlite
+
+# ---- OS / editor junk ----
+.DS_Store
+Thumbs.db
+*.log
